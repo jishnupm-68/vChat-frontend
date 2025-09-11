@@ -13,7 +13,7 @@ const ThemeToggle = () => {
     [dark])
   return (
     <div className=' flex  items-center' onClick={()=>{
-            setDark(!dark)}}>{dark?"Light":"Dark"}
+            setDark(!dark)}}>{dark?"Dark":"Light"}
         <button  className='pl-2 '
         ><CgDarkMode size={20}/> </button>
     </div>

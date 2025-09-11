@@ -1,25 +1,29 @@
-import Header from "./Components/Header"
 import Body from "./Components/Body"
 import Footer from "./Components/Footer"
 import {BrowserRouter, Routes, Route} from "react-router-dom"
 import Login from "./Components/Login"
 import Profile from "./Components/Profile"
+import {Provider} from "react-redux"
+import appStore from "./utils/appStore"
+import Feed from "./Components/Feed"
 const App = () => {
   return (
     <div>
-      <BrowserRouter basename="/">
-      <Routes>
-        <Route path="/" element={<Body />}>
-        <Route path="/login" element= {<Login />}></Route>
-        <Route path="/profile" element={<Profile />}></Route>
-        </Route>
-       
-      </Routes>
-      </BrowserRouter>
-     <Footer />
+      <Provider store={appStore}>
+        <BrowserRouter basename="/">
+          <Routes>
+            <Route path="/" element={<Body />}>
+              <Route path="/login" element={<Login />}></Route>
+              <Route path="/" element={<Feed />}></Route>
+              <Route path="/profile/view" element={<Profile />}></Route>
+            </Route>
+          </Routes>
+        </BrowserRouter>
+        <Footer />
+      </Provider>
     </div>
-  )
-}
+  );
+};
 
 export default App
 

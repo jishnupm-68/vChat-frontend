@@ -2,9 +2,8 @@ import React from 'react'
 
 const UserCard = (props) => {
 const {firstName,lastName, photoUrl,about, age, gender} = props?.user
-  
   return (
-    <div className="card bg-base-300 w-96 shadow-sm">
+    <div className="card bg-base-300 w-96 shadow-sm mx-1">
   <figure>
     <img
       src={photoUrl}
@@ -15,8 +14,8 @@ const {firstName,lastName, photoUrl,about, age, gender} = props?.user
     {age && <p>{age}</p>} {gender&&<p>{gender}</p>}
     <p>{about}</p>
     <div className="card-actions justify-end">
-      <button className="btn btn-warning">Ignore</button>
-      <button className="btn btn-success">Interested</button>
+      <button className="btn btn-soft btn-warning">Ignore</button>
+      <button className="btn btn-soft btn-success">Interested</button>
     </div>
   </div>
 </div>

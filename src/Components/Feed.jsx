@@ -26,7 +26,7 @@ dispatch(addFeed(res?.data))
   return (
     <div className='flex justify-center my-14'>
       {feed && 
-          feed?.data.map((feedUser)=><UserCard key= {feedUser?._id} feedUser={feedUser}/>)
+          feed?.data.map((feedUser)=><UserCard key= {feedUser?._id} user={{firstName:feedUser?.firstName, lastName:feedUser?.lastName,  photoUrl:feedUser?.photoUrl, about:feedUser?.about}}/>)
       }
      
     

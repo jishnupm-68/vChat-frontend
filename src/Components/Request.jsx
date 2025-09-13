@@ -9,7 +9,6 @@ const Request = () => {
     const dispatch =useDispatch();
     const requests = useSelector((store)=>store?.request)
     const reviewRequest = async(status, _id)=>{
-        console.log("status and id", status, _id)
 
         try {
              const res = await axios.post(BASE_URL+"/request/review/"+status+"/"+_id,{}
@@ -27,7 +26,6 @@ const Request = () => {
                 {withCredentials:true}
             )
             dispatch(addRequest(res?.data?.data))
-            console.log("req ", res, requests)
             
         } catch (error) {
             console.log(error)
@@ -62,7 +60,6 @@ const Request = () => {
 
        {requests.map((item)=>{
         const {firstName, lastName, photoUrl, about, age , gender, _id}= item?.fromUserId
-        console.log("items in req ",firstName, lastName, photoUrl, about, age , gender, _id )
       return(<tr key = {_id}>
         <td>
           <div className="flex items-center gap-3">

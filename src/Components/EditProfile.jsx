@@ -31,7 +31,6 @@ const EditProfile = (user) => {
           },
           {withCredentials:true}
         )
-        console.log("result pro save", res)
         dispatch(addUser(res?.data?.data))
         setShowToast(true);
         setMessage(res?.data?.message)
@@ -45,10 +44,10 @@ const EditProfile = (user) => {
       }
      }
   return (
-    <div className='flex justify-center my-10'>
+    <div className='lg:flex  lg:justify-center sm:flex-col sm:items-center my-10'>
       
         {user && <div className='mx-10'>
-      <div className="card card-border bg-base-300 w-96">
+      <div className="card card-border bg-base-300 w-96 ">
       
 
      {showToast &&  <div className="toast toast-top toast-end my-10">
@@ -89,21 +88,26 @@ const EditProfile = (user) => {
 
             <fieldset className="fieldset">
               <legend className="fieldset-legend">Gender</legend>
-              <input type="text" 
-              className="input" 
-              placeholder="Type here" 
-              value={gender}
-              onChange={(e)=>setGender(e.target.value)} />
+  
+              <details className="dropdown">
+            <summary className="btn m-1">{gender?gender:"Select gender"}</summary>
+            <ul  className=" cursor-pointer menu dropdown-content bg-base-100 rounded-box z-1 w-28  p-2 shadow-sm">
+              <li onClick={()=>setGender("male")} className='p-1 hover:bg-base-300'>male</li>
+              <li onClick={()=>setGender("female")} className='p-1 hover:bg-base-300'>female</li>
+            </ul>
+          </details>
+
+
+
             </fieldset>
 
-            <fieldset className="fieldset">
-                <legend className="fieldset-legend">About</legend>
-                <input type="text" 
-                className="input" 
-                placeholder="Type here" 
-                value={about}
-                onChange={(e)=>setAbout(e.target.value)} />
-            </fieldset>
+
+          <fieldset className="fieldset">
+            <legend className="fieldset-legend">Your bio</legend>
+            <textarea className="textarea h-24" placeholder="About" value={about}
+                          onChange={(e)=>setAbout(e.target.value)} ></textarea>
+            <div className="label">Optional</div>
+          </fieldset>
 
             <fieldset className="fieldset">
               <legend className="fieldset-legend">Photourl</legend>
@@ -123,7 +127,8 @@ const EditProfile = (user) => {
       </div>
     </div>
     }
-    <div>
+    
+    <div className='sm:mt-10'>
       <UserCard user={{firstName, lastName, about, photoUrl, age, gender}}/>
     </div>
 

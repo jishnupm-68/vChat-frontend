@@ -9,6 +9,7 @@ import Feed from "./Components/Feed"
 import Connections from "./Components/Connections"
 import Request from "./Components/Request"
 import ProtectRoute from "./Components/ProtectRoute"
+import Chat from "./Components/Chat"
 const App = () => {
   return (
     <div>
@@ -22,6 +23,7 @@ const App = () => {
               <Route path="/profile" element={<Profile />}></Route>
               <Route path="/connections" element={<Connections />} ></Route>
               <Route path="requests" element = {<Request />} ></Route>
+              <Route path="/chat/:toUser" element={<Chat />} ></Route>
 
               
               </Route>

@@ -28,7 +28,7 @@ const Body = () => {
   
 
   return (
-    <div>
+    <div className="pb-20">
       <Header />
       <Outlet />
     </div>

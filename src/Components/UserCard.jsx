@@ -19,9 +19,9 @@ const UserCard = (props) => {
   }
 const {firstName,lastName, photoUrl,about, age, gender, _id} = props?.user
   return (
-    <div className="card bg-base-300 w-96 shadow-sm mx-1">
+    <div className="card bg-base-300 lg:w-96 shadow-sm mx-10 ls:mx-1 p-4 ls:p-1">
   <figure>
-    <img className="w-96"
+    <img className="lg:w-96 sm:w-56 "
       src={photoUrl}
       alt="User" />
   </figure>

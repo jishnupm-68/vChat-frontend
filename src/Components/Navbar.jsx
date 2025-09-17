@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { BASE_URL } from "../utils/constants"
 import { removeUser } from "../utils/userSlice"
+import { useState } from "react"
 
 const Navbar = () => {
   const user = useSelector((store)=>store.user)
@@ -29,10 +30,11 @@ const Navbar = () => {
     {user && <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />}
     {user && <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-        <div className="w-10 rounded-full">
+        <div className="w-10 rounded-full " >
           <img
             alt="user profile photo"
-            src={user.photoUrl} />
+            src={user.photoUrl}
+             /> 
         </div>
       </div>
       <ul

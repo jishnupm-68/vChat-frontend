@@ -35,7 +35,7 @@ const Request = () => {
         fetchRequests()
     },[])
    if(!requests) return <><h1>No Request found</h1></>
-     if(requests.length===0) return <><h1>No Request found</h1></>
+     if(requests.length===0) return <><h1 className="p-2">No Request found</h1></>
     
   return (
     <div>

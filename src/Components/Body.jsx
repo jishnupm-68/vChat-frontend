@@ -18,7 +18,7 @@ const Body = () => {
       dispatch(addUser(result?.data?.data))
     } catch (error) {
       Navigate("/login")
-      console.log("Error: ",error.message)
+      // console.log("Error: ",error.message)
     }
   }
   useEffect(()=>{

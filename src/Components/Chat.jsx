@@ -13,7 +13,14 @@ const Chat = () => {
     const firstName = user?.firstName
     const [message, setMessage] = useState([])
     const [newMessage, setNewMessage] =useState("")
+    const [errorMessage, setErrorMessage] = useState("")
+    const [sentButton, setSentButton] = useState(true)
     const chatRef = useRef(null)
+    useEffect(()=>{
+      if(newMessage.length===0) setSentButton(false)
+      else setSentButton(true)
+    },
+    [newMessage])
     const fetchChatMessages = async ()=>{
       try {
         let chat = await axios.get(BASE_URL+"/getChat/"+toUser, {
@@ -54,13 +61,31 @@ const Chat = () => {
 
     },[message])
 
-    const sendMessage = async()=>{
+    const sendMessage = async(sentButton)=>{
+        if(!sentButton) {
+          setErrorMessage("Unable to sent empty message")
+          const timer = setTimeout(()=>{
+            setErrorMessage("")
+            
+          },3000)
+          return ()=>timer
+        }
         const socket = createSocketConnection()
         socket.emit("sendMessage",{firstName, fromUserId, toUser, text:newMessage})
         setNewMessage("")
+        
     }
   return (
 <div className="flex flex-col   m-1 p-1 md:w-screen md:items-center lg:w-screen lg:items-center">
+
+
+{errorMessage && <div role="alert" className="alert alert-warning">
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+  </svg>
+  <span>{errorMessage}</span>
+</div>}
+
   <div className="flex flex-col lg:justify-center  md:w-1/2 lg:w-1/2 dark:bg-gray-800 ">
     <div className=" m-1 p-1  shadow border-amber-50 ">
       Chat 
@@ -98,7 +123,7 @@ const Chat = () => {
 
          <input type="text" placeholder="Type here" className="input" value={newMessage}
          onChange={(e)=>setNewMessage(e.target.value)} /> 
-         <button onClick={sendMessage} className="ml-1 btn btn-neutral dark:text-white dark:btn-outline btn-outline">Send</button>
+         <button onClick={()=>sendMessage(sentButton)} className="ml-1 btn btn-neutral dark:text-white dark:btn-outline btn-outline">Send</button>
 
        </div>
 

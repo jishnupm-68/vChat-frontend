@@ -26,7 +26,7 @@ const Chat = () => {
         let chat = await axios.get(BASE_URL+"/getChat/"+toUser, {
           withCredentials:true
         })
-        const chatMessages = chat?.data?.data?.messages.map((msg)=>{console.log(msg)
+        const chatMessages = chat?.data?.data?.messages.map((msg)=>{
           const date = new Date(msg?.createdAt);
           return {firstName:msg?.senderId?.firstName,time: date.toLocaleString("in"), lastName:msg?.lastName,photoUrl:msg?.senderId?.photoUrl, text:msg?.text}
         })
@@ -55,7 +55,6 @@ const Chat = () => {
     useEffect(()=>{
        if(chatRef.current){
         chatRef.current.scrollTop = chatRef.current.scrollHeight;
-        console.log("updated message", message)
       }
       
 
